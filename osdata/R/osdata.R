@@ -1,4 +1,0 @@
-data("osusers")
-data("osmap")
-
-
