@@ -1,28 +1,19 @@
-index
+Analyzing of the Popularity of the Operating Systems
 ========================================================
-author: 
-date: 
+author: Aleksei Neverov
 autosize: true
 
-First Slide
+Synopsis
 ========================================================
 
-For more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
-
-Slide With Code
+Creating of the "osdata" package 
 ========================================================
 
-```{r}
-summary(cars)
-```
 
-Slide With Plot
+Shiny-application Content and Functions
 ========================================================
 
-```{r, echo=FALSE}
-plot(cars)
-```
+
+Prediction of the Popularity of the Operating Systems
+========================================================
