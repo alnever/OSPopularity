@@ -4,11 +4,13 @@
 #
 # http://shiny.rstudio.com
 #
+# library(devtools)
+# install_github("osdata","alnever")
+library(osdata)
 
 library(shiny)
-require(osdata)
 require(googleVis)
-
+library(reshape2)
 
 shinyServer(function(input, output) {
 

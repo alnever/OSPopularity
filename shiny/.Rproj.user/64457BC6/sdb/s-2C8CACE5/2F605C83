@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "index\n========================================================\nauthor: \ndate: \nautosize: true\n\nFirst Slide\n========================================================\n\nFor more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.\n\n- Bullet 1\n- Bullet 2\n- Bullet 3\n\nSlide With Code\n========================================================\n\n```{r}\nsummary(cars)\n```\n\nSlide With Plot\n========================================================\n\n```{r, echo=FALSE}\nplot(cars)\n```\n",
+    "created" : 1464611666183.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4194139324",
+    "id" : "2F605C83",
+    "lastKnownWriteTime" : 1464611760,
+    "last_content_update" : 1464611760143,
+    "path" : "D:/Work/R/09/OS/index.Rpres",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_presentation"
+}

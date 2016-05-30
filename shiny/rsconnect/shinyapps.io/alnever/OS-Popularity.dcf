@@ -1,0 +1,9 @@
+name: OS-Popularity
+account: alnever
+server: shinyapps.io
+appId: 105268
+bundleId: 466134
+url: https://alnever.shinyapps.io/OS-Popularity/
+when: 1464611302.04973
+asMultiple: FALSE
+asStatic: FALSE

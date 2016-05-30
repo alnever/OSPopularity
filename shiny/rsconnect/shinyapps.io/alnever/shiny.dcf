@@ -1,0 +1,9 @@
+name: shiny
+account: alnever
+server: shinyapps.io
+appId: 105264
+bundleId: 466127
+url: https://alnever.shinyapps.io/shiny/
+when: 1464611111.33521
+asMultiple: FALSE
+asStatic: FALSE
