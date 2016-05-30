@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "---\ntitle: \"README\"\noutput: github_document\n---\n\n```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = TRUE)\n```\n\nDescription of the project\n\n",
+    "contents" : "---\ntitle: \"README\"\noutput: github_document\n---\n\n```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = TRUE)\n```\n\n## Description of the project\n\n\n## Presentation\n\n[Presentation on github.io](http://alnever.github.io/OSPopularity/#/)\n\n",
     "created" : 1464612156141.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "290229790",
+    "hash" : "1798972947",
     "id" : "4EE51085",
-    "lastKnownWriteTime" : 1464612459,
-    "last_content_update" : 1464612459287,
+    "lastKnownWriteTime" : 1464613036,
+    "last_content_update" : 1464613036788,
     "path" : "D:/Work/R/09/OS/README.Rmd",
     "project_path" : null,
     "properties" : {
