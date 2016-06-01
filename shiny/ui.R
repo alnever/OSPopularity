@@ -29,7 +29,7 @@ shinyUI(fluidPage(
   # Sidebar with a slider input for number of bins
   sidebarLayout(
     sidebarPanel(
-          selectInput('appFunc','Function:',c('Popularity','Prediction'), selected = "Popularity"),
+          selectInput('appFunc','Function:',c('Popularity','Prediction','Map'), selected = "Popularity"),
           conditionalPanel(
                 condition = "input.appFunc == 'Popularity'",
                 h5("Start of the time frame:"),
@@ -50,6 +50,11 @@ shinyUI(fluidPage(
                 checkboxInput('showTable',"Show also data within the table")
           ),
           conditionalPanel(
+                condition = "input.appFunc == 'Map'",
+                selectInput('mapOS',"Operating Systems:",names(osmap)[-1],selected = NULL),
+                checkboxInput('mostOS','Show the most popular OS for each country')
+                ),          
+          conditionalPanel(
                 condition = "input.appFunc == 'Prediction'", 
                 selectInput('predMonth','Month:',1:12, selected = 1),
                 sliderInput("predYear","Year:", 
@@ -57,8 +62,8 @@ shinyUI(fluidPage(
                             max = max(dates$year) + 10,
                             value = max(dates$year)
                 )
-          ),
-          actionButton('actBtn',"Show results")
+          )
+          
     ),
 
     # Show a plot of the generated distribution

@@ -19,8 +19,25 @@ shinyServer(function(input, output) {
       maxDate <- reactive({paste(input$maxYear,'-',sprintf("%02d",as.numeric(input$maxMonth)), sep = "")})
       topTen  <- reactive({input$topTen})
       showTab <- reactive({input$showTable})
+      appFunc <- reactive({
+            switch(input$appFunc,
+                   'Popularity' = 1,
+                   'Prediction' = 2,
+                   'Map' = 3
+                   )
+      })
+      mapOS <- reactive({input$mapOS})
+      mostOS <- reactive({input$mostOS})
 
-      output$outTimeFrame <- renderText(paste(minDate(),maxDate(),sep=" - "))
+      output$outTimeFrame <- renderText({
+            if (appFunc() == 1) {
+                  paste(minDate(),maxDate(),sep=" - ")
+            } else if (appFunc() == 2) {
+                  
+            } else if (appFunc() == 3) {
+                  '2016-02 - 2016-04'
+            }
+      })
       
       prepareDataSet <- function(p_minDate, p_maxDate, p_topTen) {
             osu <- subset(osusers, as.character(osusers$Date) >= p_minDate & as.character(osusers$Date) <= p_maxDate)  
@@ -42,11 +59,42 @@ shinyServer(function(input, output) {
              )
 
       output$popLineChart <- renderGvis({
-            osu <- prepareDataSet(minDate(),maxDate(),topTen())
-            gvisLineChart(data = osu, 
-                          "Date", 
-                          names(osu)[-1],
-                          options = list(height = 600, width = 800))
+            opt_list = list(height = 600, width = 800) 
+            if (appFunc() == 1) {
+                  osu <- prepareDataSet(minDate(),maxDate(),topTen())
+                  gvisLineChart(data = osu, 
+                                "Date", 
+                                names(osu)[-1],
+                                options = opt_list)
+            } 
+            else if (appFunc() == 2) {
+                  
+            }
+            else if (appFunc() == 3) {
+                  if (mostOS() == FALSE) {
+                        gvisGeoChart(data = osmap, locationvar = "Continent", 
+                                                 colorvar = mapOS(), 
+                                                 hovervar = "",
+                                                 options = opt_list)
+                  } else {
+                        oscountry <- as.character(osmap$Continent)
+                        osm <- osmap[,-1]
+                        maxim <- apply(osm,1, function(x) {t <-names(osm)[which(x == max(x))]; t[1]})
+                        osmax <- as.data.frame(cbind(oscountry,maxim))
+                        names(osmax) <- c("Country","Operating.System")
+                        osmax$OS <- as.factor(osmax$Operating.System)
+                        vAxesParams <- paste("[{title:'",levels(osmax$OS)[1],"'},{title:'",levels(osmax$OS)[length(levels(osmax$OS))],"'}]",sep="")
+                        gvisGeoChart(data = osmax, locationvar = "Country", 
+                                     colorvar = "OS", 
+                                     hovervar = "Operating.System",
+                                     options = list(height = 600, width = 800,
+                                                    colors="['#ff0000','#00ff00']",
+                                                    vAxes=vAxesParams,
+                                                    backgroundColor="lightblue"
+                                     ))
+
+                  }
+            }
       })
       
       output$popTable <- renderGvis({
