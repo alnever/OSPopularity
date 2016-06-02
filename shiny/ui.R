@@ -58,10 +58,11 @@ shinyUI(fluidPage(
                 condition = "input.appFunc == 'Prediction'", 
                 selectInput('predMonth','Month:',1:12, selected = 1),
                 sliderInput("predYear","Year:", 
-                            min = max(dates$year), 
-                            max = max(dates$year) + 10,
-                            value = max(dates$year)
-                )
+                            min = max(dates$year) + 1, 
+                            max = max(dates$year) + 11,
+                            value = max(dates$year) + 1
+                ),
+                selectInput('predOS',"Operating Systems:",names(osmap)[-1],selected = NULL)
           )
           
     ),
@@ -69,7 +70,7 @@ shinyUI(fluidPage(
     # Show a plot of the generated distribution
     mainPanel(
           # plotOutput("distPlot")
-          h3('The popylarity of the operating systems'),
+          htmlOutput("pageTitle"),
           h4('Time frame: ',textOutput('outTimeFrame')),
           htmlOutput("popLineChart"),
           htmlOutput("popTable")

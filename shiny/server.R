@@ -28,16 +28,42 @@ shinyServer(function(input, output) {
       })
       mapOS <- reactive({input$mapOS})
       mostOS <- reactive({input$mostOS})
+      predOS <- reactive({input$predOS})
+      predYear <- reactive({sprintf("%04d",as.numeric(input$predYear))})
+      predMonth <- reactive({sprintf("%02d",as.numeric(input$predMonth))})
+      
+      output$pageTitle <- renderText({
+            if (appFunc() == 1) {
+                  if (topTen()) {
+                        "<h3>Top-ten the most popular OS</h3>"
+                  } else {
+                        "<h3>The popularity level of the different OS</h3>"
+                  }
+                  
+            } else if (appFunc() == 2) {
+                  paste("<h3>Prediction of the popularity level of",predOS(),"</h3>")
+                  
+            } else if (appFunc() == 3) {
+                  if (mostOS()) {
+                        "<h3>The most popular OS in the different countries</h3>"   
+                  } else {
+                        paste("<h3>Map of the popularity level for",mapOS(),"</h3>")
+                  }
+            }
+            
+      })
 
       output$outTimeFrame <- renderText({
             if (appFunc() == 1) {
                   paste(minDate(),maxDate(),sep=" - ")
             } else if (appFunc() == 2) {
+                  paste("Prediction to ",predYear(),"-",predMonth(),sep="")
                   
             } else if (appFunc() == 3) {
                   '2016-02 - 2016-04'
             }
       })
+
       
       prepareDataSet <- function(p_minDate, p_maxDate, p_topTen) {
             osu <- subset(osusers, as.character(osusers$Date) >= p_minDate & as.character(osusers$Date) <= p_maxDate)  
@@ -68,7 +94,26 @@ shinyServer(function(input, output) {
                                 options = opt_list)
             } 
             else if (appFunc() == 2) {
+                  predValues <- getPredValues(predYear(),predMonth())
+                  predUpr    <- getPredUpr(predYear(),predMonth())
+                  predLwr    <- getPredLwr(predYear(),predMonth())
+                  df <- cbind(predValues$Date,predValues[,predOS()],predUpr[,predOS()],predLwr[,predOS()])
+                  df <- as.data.frame(df)
+                  names(df) <- c("Date","Popularity","Upr","Lwr")
                   
+                  df$Popularity <- as.numeric(as.character(df$Popularity))
+                  df$Upr <- as.numeric(as.character(df$Upr))
+                  df$Lwr <- as.numeric(as.character(df$Lwr))
+                  
+                  gvisLineChart(df, xvar = "Date", yvar = c("Popularity","Upr","Lwr"),
+                                options = list(height = 600, width = 800,
+                                               title = paste("Predictions for",predOS()),
+                                               series="[{color:'black', targetAxisIndex: 0}, 
+                                                        {color: 'blue',targetAxisIndex:0},
+                                                        {color: 'red',targetAxisIndex:0}
+                                                      ]"
+                                               )
+                                )
             }
             else if (appFunc() == 3) {
                   if (mostOS() == FALSE) {
@@ -98,7 +143,7 @@ shinyServer(function(input, output) {
       })
       
       output$popTable <- renderGvis({
-            if (showTab()) {
+            if (showTab() & appFunc() == 1) {
                   osu <- prepareDataSet(minDate(),maxDate(),topTen())
                   gvisTable(osu, options = myOptions)
             }
