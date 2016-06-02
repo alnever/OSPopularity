@@ -1,7 +1,6 @@
 
 # This is the user-interface definition of a Shiny web application.
-# You can find out more about building applications with Shiny here:
-#
+# 
 # http://shiny.rstudio.com
 #
 # library(devtools)
@@ -29,7 +28,9 @@ shinyUI(fluidPage(
   # Sidebar with a slider input for number of bins
   sidebarLayout(
     sidebarPanel(
+          ## Select input for selecting the Application function
           selectInput('appFunc','Function:',c('Popularity','Prediction','Map'), selected = "Popularity"),
+          ## Conditional panel for the app-function == "Popularity"
           conditionalPanel(
                 condition = "input.appFunc == 'Popularity'",
                 h5("Start of the time frame:"),
@@ -49,11 +50,13 @@ shinyUI(fluidPage(
                 checkboxInput('topTen',"Show only top-ten operating systems"),
                 checkboxInput('showTable',"Show also data within the table")
           ),
+          ## Conditional panel for the app-function == "Map"
           conditionalPanel(
                 condition = "input.appFunc == 'Map'",
                 selectInput('mapOS',"Operating Systems:",names(osmap)[-1],selected = NULL),
                 checkboxInput('mostOS','Show the most popular OS for each country')
                 ),          
+          ## Conditional panel for the app-function == "Prediction"
           conditionalPanel(
                 condition = "input.appFunc == 'Prediction'", 
                 selectInput('predMonth','Month:',1:12, selected = 1),
@@ -67,9 +70,8 @@ shinyUI(fluidPage(
           
     ),
 
-    # Show a plot of the generated distribution
+    # Show data generated within the server.io
     mainPanel(
-          # plotOutput("distPlot")
           htmlOutput("pageTitle"),
           h4('Time frame: ',textOutput('outTimeFrame')),
           htmlOutput("popLineChart"),
