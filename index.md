@@ -3,6 +3,8 @@ Analyzing of the Popularity of the Operating Systems
 author: Aleksei Neverov
 autosize: true
 
+<div xmlns:cc="http://creativecommons.org/ns#" about="http://gs.statcounter.com/about?PHPSESSID=cjgsasrma4847lrunklejg5944"><a rel="cc:attributionURL" property="cc:attributionName" href="http://gs.statcounter.com">StatCounter</a> / <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></div>
+
 Project description
 ========================================================
 
