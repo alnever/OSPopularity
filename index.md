@@ -3,6 +3,8 @@ Analyzing of the Popularity of the Operating Systems
 author: Aleksei Neverov
 autosize: true
 
+The data for this project were obtained from the following resource and under the following lisence:
+
 <div xmlns:cc="http://creativecommons.org/ns#" about="http://gs.statcounter.com/about?PHPSESSID=cjgsasrma4847lrunklejg5944"><a rel="cc:attributionURL" property="cc:attributionName" href="http://gs.statcounter.com">StatCounter</a> / <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></div>
 
 Project description
@@ -61,5 +63,34 @@ It allows the user to use three functions:
 * The **Map** function allows the user to see within the map view the popularity level of the different OS in different countries. The user can choose the operating system using the combobox. Also the user can obtain the map showing the most popular OS in different countries. When this type of view is choosen, there isn't any responce on the changing the combobox value.
 * The **Prediction** function allows user to see the result of the forecasting for the selected operating system. The chart shows the predicted values for the monthes begining from the May 2016 and ending with the month defined by the user.  In addition to the predicted values the upper and lower levels of the confidence intervals are shown.
 
-Prediction of the Popularity of the Operating Systems
+Prediction of the Popularity of the Operating Systems (in osdata package)
 ========================================================
+
+
+```r
+fitRegressionModels <- function()
+{     # Prepare dataset for model fitting
+      osu <- osusers; dates <- as.character(osu$Date)
+      dates <- paste(dates,"01",sep="-"); dates <- as.Date(dates)
+
+      ## become a list of regression models
+      fits <- apply(osu[,-1], 2, function(x) {lm(x~dates)})
+
+      return(fits)
+}
+```
+
+
+```r
+getPredictions <- function(a_Year, a_Month) {
+      # Fit the set of regression models
+      fits <- fitRegressionModels()
+      # Get the monthes for the prediction
+      predictDates <- getForecastingInterval(a_Year, a_Month)
+      # Make a prediction
+      predictions <- lapply(fits, 
+            function(x) {predict(x, newdata = predictDates, interval = "confidence")})
+
+      return(predictions)
+}
+```
