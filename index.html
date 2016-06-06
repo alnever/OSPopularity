@@ -804,10 +804,8 @@ hljs.initHighlightingOnLoad();
 <ul>
 <li>The data for this project were obtained from <a href="http://gs.statcounter.com/">The Stat Counter Web-Site</a></li>
 <li>The data show the popularity of the different operating systems according the preferences of the Internet users</li>
-<li>The indexes are colleced according the following method:</li>
+<li>The indexes are colleced according the following method <a href="http://gs.statcounter.com/about?PHPSESSID=cjgsasrma4847lrunklejg5944">About the StatCounter</a></li>
 </ul>
-
-<p><em>&ldquo;Stats are based on aggregate data collected by StatCounter on a sample exceeding 15 billion pageviews per month collected from across the StatCounter network of more than 3 million websites. Stats are updated and made available every 4 hours, however are subject to quality assurance testing and revision for 14 days from publication.&rdquo;</em> <a href="http://gs.statcounter.com/about?PHPSESSID=cjgsasrma4847lrunklejg5944">About the StatCounter</a></p>
 
 <p><strong>The project contains:</strong></p>
 
@@ -826,39 +824,18 @@ hljs.initHighlightingOnLoad();
 <p>The <strong>osdata</strong> package is deployed in the <a href="https://github.com/alnever/osdata.git">GitHub Repository</a>. It contains:</p>
 
 <ul>
-<li>the <strong>osusers</strong> dataset containing the monthly data of the operating system popularity indexis among the Internet users. It includes the data collected between the December 2008 and April 2016;</li>
-<li>the <strong>osmap</strong> dataset containing the popularity indexis of the operating systems for different country. Each observation of this data set contains the country name and the indexis of 24 operating systems calculated for this country;</li>
+<li>the <strong>osusers</strong> dataset containing the monthly data of the operating system popularity indexis between the December 2008 and April 2016;</li>
+<li>the <strong>osmap</strong> dataset containing the popularity indexis of the operating systems for different country;</li>
 <li>a set of <em>prediction</em> functions allowing to obtain the forcasted indexis of the OS popularity based on the <strong>osusers</strong> dataset. </li>
 </ul>
 
-<p>The predictions contains following data:</p>
-
-<ul>
-<li>the set monthes between the May 2016 and some month in the future, which should be indicated by the user;</li>
-<li>the set of predicted values for each month within the defined time frame and for each operating system from the <strong>osusers</strong> dataset;</li>
-</ul>
+<p>The predictions contains following data: (1) the set monthes between the May 2016 and some month in the future, which should be indicated by the user; (2) the set of predicted values for each month within the defined time frame and for each operating system from the <strong>osusers</strong> dataset;</p>
 
 <p>The are 2 main common functions within the package:</p>
 
 <ul>
 <li><strong>fitRegressionModels</strong> returns the list of the regressions model for each operating system;</li>
 <li><strong>getPredictions</strong> returns for each forecasted month the predicted value and the lower and upper values of the 95%-confidence interval</li>
-</ul>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>Shiny-application Content and Functions</h3>
-<div class="slideContent" >
-<p>The <strong>shiny application</strong> is accessible by this link <a href="https://alnever.shinyapps.io/OS-Popularity/">https://alnever.shinyapps.io/OS-Popularity/</a>. </p>
-
-<p>It allows the user to use three functions:</p>
-
-<ul>
-<li>The <strong>Popularity</strong> function may be used to obtain the charts illustrating the popularity level of the operating systems. The user can choose the time frame for chart. Also the user can swith the view between all OS and the top-ten popular OS. The main type of data presentation is a <em>line chart</em>. There are a possibility to show or hide the source data represented as a table under the chart.</li>
-<li>The <strong>Map</strong> function allows the user to see within the map view the popularity level of the different OS in different countries. The user can choose the operating system using the combobox. Also the user can obtain the map showing the most popular OS in different countries. When this type of view is choosen, there isn&#39;t any responce on the changing the combobox value.</li>
-<li>The <strong>Prediction</strong> function allows user to see the result of the forecasting for the selected operating system. The chart shows the predicted values for the monthes begining from the May 2016 and ending with the month defined by the user.  In addition to the predicted values the upper and lower levels of the confidence intervals are shown.</li>
 </ul>
 
 </div>
@@ -891,6 +868,23 @@ hljs.initHighlightingOnLoad();
       return(predictions)
 }
 </code></pre>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Shiny-application Content and Functions</h3>
+<div class="slideContent" >
+<p>The <strong>shiny application</strong> is accessible by this link <a href="https://alnever.shinyapps.io/OS-Popularity/">https://alnever.shinyapps.io/OS-Popularity/</a>. </p>
+
+<p>It allows the user to use three functions:</p>
+
+<ul>
+<li>The <strong>Popularity</strong> function may be used to obtain the charts illustrating the popularity level of the operating systems. </li>
+<li>The <strong>Map</strong> function allows the user to see within the map view the popularity level of the different OS in different countries. * The <strong>Prediction</strong> function allows user to see the result of the forecasting for the selected operating system. </li>
+</ul>
+
+<p>The full description is included into the application itself.l</p>
 
 </div>
 

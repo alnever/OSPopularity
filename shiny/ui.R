@@ -48,13 +48,18 @@ shinyUI(fluidPage(
                             value = max(dates$year)
                 ),
                 checkboxInput('topTen',"Show only top-ten operating systems"),
-                checkboxInput('showTable',"Show also data within the table")
+                checkboxInput('showTable',"Show also data within the table"),
+                h5("Description:"),
+                p("The Popularity function may be used to obtain the charts illustrating the popularity level of the operating systems. The user can choose the time frame for chart. Also the user can swith the view between all OS and the top-ten popular OS. The main type of data presentation is a line chart. There are a possibility to show or hide the source data represented as a table under the chart.")
+                
           ),
           ## Conditional panel for the app-function == "Map"
           conditionalPanel(
                 condition = "input.appFunc == 'Map'",
                 selectInput('mapOS',"Operating Systems:",names(osmap)[-1],selected = NULL),
-                checkboxInput('mostOS','Show the most popular OS for each country')
+                checkboxInput('mostOS','Show the most popular OS for each country'),
+                h5("Description:"),
+                p("The Map function allows the user to see within the map view the popularity level of the different OS in different countries. The user can choose the operating system using the combobox. Also the user can obtain the map showing the most popular OS in different countries. When this type of view is choosen, there isn't any responce on the changing the combobox value.")
                 ),          
           ## Conditional panel for the app-function == "Prediction"
           conditionalPanel(
@@ -65,7 +70,9 @@ shinyUI(fluidPage(
                             max = max(dates$year) + 11,
                             value = max(dates$year) + 1
                 ),
-                selectInput('predOS',"Operating Systems:",names(osmap)[-1],selected = NULL)
+                selectInput('predOS',"Operating Systems:",names(osmap)[-1],selected = NULL),
+                h5("Description:"),
+                p("The Prediction function allows user to see the result of the forecasting for the selected operating system. The chart shows the predicted values for the monthes begining from the May 2016 and ending with the month defined by the user.  In addition to the predicted values the upper and lower levels of the confidence intervals are shown.")
           )
           
     ),
