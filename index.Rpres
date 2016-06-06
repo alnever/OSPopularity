@@ -80,7 +80,8 @@ The **shiny application** is accessible by this link [https://alnever.shinyapps.
 It allows the user to use three functions:
 
 * The **Popularity** function may be used to obtain the charts illustrating the popularity level of the operating systems. 
-* The **Map** function allows the user to see within the map view the popularity level of the different OS in different countries. * The **Prediction** function allows user to see the result of the forecasting for the selected operating system. 
+* The **Map** function allows the user to see within the map view the popularity level of the different OS in different countries.
+* The **Prediction** function allows user to see the result of the forecasting for the selected operating system. 
 
 The full description is included into the application itself.l
 
