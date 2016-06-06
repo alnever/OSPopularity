@@ -10,20 +10,11 @@ The data for this project were obtained from the following resource and under th
 Project description
 ========================================================
 
-<span style="font-color: black">
-
 * The data for this project were obtained from [The Stat Counter Web-Site](http://gs.statcounter.com/)
 * The data show the popularity of the different operating systems according the preferences of the Internet users
 * The indexes are colleced according the following method:
 
-</span>
-
-
-<span class="color: blue">
-
 *"Stats are based on aggregate data collected by StatCounter on a sample exceeding 15 billion pageviews per month collected from across the StatCounter network of more than 3 million websites. Stats are updated and made available every 4 hours, however are subject to quality assurance testing and revision for 14 days from publication."* [About the StatCounter](http://gs.statcounter.com/about?PHPSESSID=cjgsasrma4847lrunklejg5944)
-
-</span>
 
 **The project contains:**
 
